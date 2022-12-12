@@ -37,3 +37,26 @@ button.addEventListener('click', function(){
 
 
 // ------------------------------------------------------------------------------------
+
+// Inventa una lista di email autorizzate
+// Chiedi all’utente la sua email, con un piccolo form.
+// controlla che sia nella lista di chi può accedere,
+// stampa un messaggio appropriato sull’esito del controllo.
+
+// Prendo gli elementi dalla pagina
+const userEmail = document.getElementById('email');
+const message = document.getElementById('message');
+const buttonElement = document.getElementById('button-element');
+
+// Creo lista email valide con un Array
+const validEmail = ['pippo@gmail.com', 'guadagnoli@gmail.com', 'federico@gmail.com'];
+
+// Creo la funzione sul button
+buttonElement.addEventListener('click', function(){
+    let value = userEmail.value;
+    if (value === validEmail[0] || value === validEmail[1] || value === validEmail[2]){
+        message.innerText = 'email valida'
+    } else {
+        message.innerText = 'email non valida';
+    }
+})
