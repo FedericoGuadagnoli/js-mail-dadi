@@ -44,7 +44,7 @@ button.addEventListener('click', function(){
 // stampa un messaggio appropriato sull’esito del controllo.
 
 // Prendo gli elementi dalla pagina
-const userEmail = document.getElementById('email');
+const emailField = document.getElementById('email');
 const message = document.getElementById('message');
 const buttonElement = document.getElementById('button-element');
 
@@ -53,10 +53,22 @@ const validEmail = ['pippo@gmail.com', 'guadagnoli@gmail.com', 'federico@gmail.c
 
 // Creo la funzione sul button
 buttonElement.addEventListener('click', function(){
-    let value = userEmail.value;
-    if (value === validEmail[0] || value === validEmail[1] || value === validEmail[2]){
-        message.innerText = 'email valida'
-    } else {
-        message.innerText = 'email non valida';
+    let userEmail = emailField.value.trim();
+    if (!userEmail) {
+        message.innerText = 'Non hai inserito alcuna email';
+        return;
     }
-})
+
+    let isAllowed = false;
+
+    for ( let i = 0; i < validEmail.length; i++) {
+        const currentEmail = validEmail[i];
+        console.log(currentEmail, userEmail);
+
+        if (currentEmail === userEmail) {
+            isAllowed = true;
+        }
+    }
+
+    message.innerText = isAllowed ? 'Benvenuto' : 'Spiacente, non sei autorizzato';
+});
